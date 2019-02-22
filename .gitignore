@@ -3,3 +3,9 @@
 ################################################################################
 
 /WahlbergUr/.vs
+/WahlbergUr/WahlbergUr/bin/Debug/netcoreapp2.2
+/WahlbergUr/WahlbergUr/obj
+/WahlbergUr/WahlbergUr/wwwroot/lib/bootstrap
+/WahlbergUr/WahlbergUr/wwwroot/lib/jquery
+/WahlbergUr/WahlbergUr/wwwroot/lib/jquery-validation
+/WahlbergUr/WahlbergUr/wwwroot/lib/jquery-validation-unobtrusive
