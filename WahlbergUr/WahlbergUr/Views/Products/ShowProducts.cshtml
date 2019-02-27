@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WahlbergUr.Models.Product>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@*@Html.DisplayNameFor(model => model.ProductName)*@
+@*<div>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </li>
+            }
+        </ul>
+    </div>*@
+
+@*<table>
+    <tr>
+        <th>
+            Product Name
+        </th>
+        @*<th>
+            Image
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+              
+            </td>
+            <td>
+                <img src="@Url.Content(item.ProductUrl)" height="60" width="50" alt="Image" />
+            </td>
+        </tr>
+    }
+</table>*@
+
+<div id="mainDisplayImageContainer">
+    @foreach (var item in Model)
+    {
+        <div id="imageContainer">
+            <img src="@Url.Content(item.ProductUrl)" height="60" width="50" alt="Image" />
+        </div>
+        <div id=" imageName">
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </div>
+    }
+</div>
+

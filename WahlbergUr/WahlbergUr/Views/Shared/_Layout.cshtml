@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <meta name="description" content="Description of your web page goes here." />
+    <meta name="description" content="This is a web page for a small clock business in Stockholm" />
     <meta name="keywords" content="Keywords for you web page go here. Each keyword or group of keyword phrases are separated by a comma. Keep this keyword list short and relevant to the content of this specific page and also relevant to the tile of the specific page." />
     @*<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>*@
 
@@ -56,22 +56,21 @@
         </nav>*@
     </header>
     <div class="container">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
 
         <div class="mainnav-container">
             <div class="mainnav-left">
-                <div class="none"><a href="#maincontent">skip to the main content area of this page</a></div>
                 <ul>
-
                     <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">Products</a></li>
-                    @*<li><%= Html.ActionLink("Login", "LogOn", "Account") %></li>
-                    <li><%= Html.ActionLink("Join", "Register", "Account") %></li>*@
+                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="ShowProducts">Products</a></li>
+                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Customer">Customer</a></li>
+                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Communicate">Communicate</a></li>
                 </ul>
             </div>
             <div class="mainnav-right">
-                
+                <ul>
+                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Administrator</a></li>
+                </ul>
             </div>
             <div class="clear"></div>
         </div>
@@ -114,43 +113,7 @@
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 
                 @RenderBody()
-                @*<img src="~/images/photo-small.jpg" class="photosmall" width="150" height="100" alt="Write a short description of the image here. It will show if the image is not loaded. Non visual browsers and search engines will also read this text." title="Users will see this text when they roll over this image. Non-visual browsers will read this text to blind users." />
-                <p>Most of the text on this page &quot;Greeked&quot;. Its fake text used to approximate how your content will look. This page has many sample elements (a form, a table, lists, etc..). Use these elements to build out your site. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec molestie. Sed aliquam sem ut arcu. Del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc., li tot Europa usa li sam vocabularium.Praesent aliquet pretium erat. Praesent non odio. Pellentesque a magna a mauris vulputate lacinia. Aenean viverra per conubia nostra, per. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exercitation ulliam corper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem veleum iriure dolor in hendrerit in vulputate velit esse molestie consequat. <a href="#" title="Users will see this text when they roll over this link. Keep it short and consise. Use this text to clarify the purpose of the link.">read more</a> </p>*@
-
-                @*<p></p>
-                <div id="three-column-container">
-                    <div id="three-column-left">
-                        <h2>Column one of a three column content section</h2>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.
-                    </div>
-                    <div id="three-column-right">
-                        <h2>Column three of a three column content section</h2>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                    </div>
-                    <div id="three-column-middle">
-                        <h2>Column two of a three column content section</h2>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                    </div>
-                    <div class="clear"></div>
-                </div>*@
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec molestie. Sed aliquam sem ut arcu. Phasellus sollicitudin. Vestibulum condimentum facilisis nulla. In hac habitasse platea dictumst. Nulla nonummy. Cras quis libero. Cras venenatis. Aliquam posuere lobortis pede. Nullam fringilla urna id leo. Praesent aliquet pretium erat. Praesent non odio. Pellentesque a magna a mauris vulputate lacinia. Aenean viverra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Aliquam lacus. <a href="#" title="Users will see this text when they roll over this link. Keep it short and consise. Use this text to clarify the purpose of the link.">read more</a> </p>
-                <img src="~/images/photo-big.jpg" class="photobig" width="488" height="335" alt="Write a short description of the image here. It will show if the image is not loaded. Non visual browsers and search engines will also read this text." title="Users will see this text when they roll over this image. Non-visual browsers will read this text to blind users." />
-                @*<h2>section title</h2>
-                <p>Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc., li tot Europa usa li sam vocabularium. Li lingues differe solmen in li gram matica, li pronunciation.</p>
-                <h2>section title </h2>
-                <ul class="list">
-                    <li>list item one</li>
-                    <li>list item two</li>
-                    <li>list item three</li>
-                    <li>list item four </li>
-                </ul>
-                <h2>section title </h2>
-                <ul class="link-list-vertical">
-                    <li><a href="#" title="Users will see this text when they roll over this link. Keep it short and consise. Use this text to clarify the purpose of the link.">list link item one</a></li>
-                    <li><a href="#" title="Users will see this text when they roll over this link. Keep it short and consise. Use this text to clarify the purpose of the link.">list link item two</a></li>
-                    <li><a href="#" title="Users will see this text when they roll over this link. Keep it short and consise. Use this text to clarify the purpose of the link.">list link item three</a></li>
-                    <li><a href="#" title="Users will see this text when they roll over this link. Keep it short and consise. Use this text to clarify the purpose of the link.">list link item four</a></li>
-                </ul>*@
+               
             </div>
         </div>
         <!--
@@ -158,24 +121,6 @@
     END CONTENT CONTAINER
 
     -->
-        <!--
-
-    BOTTOM NAV
-
-    -->
-        @*<div class="mainnav-container">
-            <div class="mainnav-left">
-                <ul>
-
-                    <li><%= Html.ActionLink("Home", "Index", "Home") %></li>
-                    <li><%= Html.ActionLink("About", "About", "Home") %></li>
-                    <li><%= Html.ActionLink("Login", "Login", "Account") %></li>
-                    <li><%= Html.ActionLink("Join", "Register", "Account") %></li>
-
-                </ul>
-            </div>
-            <div class="clear"></div>
-        </div>*@
         </main>
         </div>
 
@@ -183,7 +128,8 @@
             <div id="footer-right"></div>
             <div id="footer-left">
                 <p>
-                    <span class="small-text">&copy; 2019 - WahlbergUr</span>
+                    <span class="small-text">&copy;2019 - WahlbergUr</span>
+                    <p class="small-text">Design by: </p>
                 </p>
             </div>
         </div>
