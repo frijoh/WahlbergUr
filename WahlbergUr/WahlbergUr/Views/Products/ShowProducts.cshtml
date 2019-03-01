@@ -44,7 +44,9 @@
     @foreach (var item in Model)
     {
         <div id="imageContainer">
-            <img src="@Url.Content(item.ProductUrl)" height="60" width="50" alt="Image" />
+            <a href="@Url.Action("ShowProduct", "Products", new { id = item.ProductId})">
+            <img src="@Url.Content(item.ProductUrl) "height="60" width="50" alt="Image" />
+            </a>
         </div>
         <div id=" imageName">
             @Html.DisplayFor(modelItem => item.ProductName)
