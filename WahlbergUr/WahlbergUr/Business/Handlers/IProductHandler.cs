@@ -6,6 +6,6 @@ namespace WahlbergUr.Business
     public interface IProductHandler
     {
         Task<Product> GetProduct(int productId);
-        Task<bool> AddProduct(int id);
+        Task<bool> AddProduct(Product product);
     }
 }

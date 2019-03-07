@@ -23,6 +23,7 @@ namespace WahlbergUr.Controllers
                 new Product() { ProductId = 2, ProductName = "Rolex", ProductPrice = 3000, ProductInformation = "Best Rolex", ProductUrl = "~/images/rolextest.jpg" } ,
                 new Product() { ProductId = 3, ProductName = "Seiko", ProductPrice = 4000, ProductInformation = "Super watch", ProductUrl = "~/images/seikotest.jpg" } ,
                 new Product() { ProductId = 4, ProductName = "Swiss Military", ProductPrice = 3500, ProductInformation = "Best wiss watch", ProductUrl = "~/images/swisstest.jpg" } ,
+                new Product() { ProductId = 5, ProductName = "Emporio Armani Classic", ProductPrice = 200, ProductInformation = "Nice gold watch", ProductUrl = "~/images/emporio-armani.jpg" }
             };
 
             return View(productList);
@@ -44,10 +45,14 @@ namespace WahlbergUr.Controllers
             return View();
         }
 
-        // TODO not finished added so i could use objects in db
-        public async Task<IActionResult> AddProduct(int id)
+        // TODO not finished added so i could use objects in db, call from adminpanel
+        public async Task<IActionResult> AddProduct(Product product)
         {
-            var addProduct = await productHandler.AddProduct(id);
+            var addProduct = await productHandler.AddProduct(product);
+
+            // if true, uppdatera showProducts och skriv ut på sidan
+            // if false, hantera
+
             return View();
         }
     }

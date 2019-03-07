@@ -6,7 +6,7 @@ namespace WahlbergUr.Business.Repositories
     public interface IProductRepository
     {
         Task<Product> GetProduct(Product product);
-        Task<bool> AddProduct(int id);
+        Task<bool> AddProduct(Product product);
         void DeleteProduct();
         void UpdateProduct();
     }

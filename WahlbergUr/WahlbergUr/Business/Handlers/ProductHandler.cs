@@ -13,10 +13,10 @@ namespace WahlbergUr.Business.Handlers
             this.productRepository = productRepository;
         }
 
-        public async Task<bool> AddProduct(int id)
+        public async Task<bool> AddProduct(Product product)
         {
-            var foundProduct = await productRepository.AddProduct(id);
-            if (foundProduct)
+            var addProduct = await productRepository.AddProduct(product);
+            if (addProduct != null)
             {
                 return true;
             }
