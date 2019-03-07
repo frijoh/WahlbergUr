@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WahlbergUr.Business.Repositories;
 using WahlbergUr.Models;
 
@@ -16,7 +17,7 @@ namespace WahlbergUr.Business.Handlers
         public async Task<bool> AddProduct(Product product)
         {
             var addProduct = await productRepository.AddProduct(product);
-            if (addProduct != null)
+            if (addProduct)
             {
                 return true;
             }
@@ -32,6 +33,14 @@ namespace WahlbergUr.Business.Handlers
             var foundProduct = await productRepository.GetProduct(product1);
             
             return foundProduct;
+        }
+
+        public async Task<List<Product>> ShowProducts()
+        {
+            //var productList = new List<Product>();
+            var productList = await productRepository.ShowProducts();
+
+            return productList;
         }
     }
 }

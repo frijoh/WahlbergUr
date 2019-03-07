@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using WahlbergUr.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace WahlbergUr.Business.Repositories
 {
@@ -56,15 +57,28 @@ namespace WahlbergUr.Business.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetProduct(Product product1)
+        public Task<Product> GetProduct(Product findProduct)
         {
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
                 var productResult = new Product();
                 var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId));
-                var foundProduct = productCollection.AsEnumerable().FirstOrDefault((product) => product.ProductId == product1.ProductId);
+                var foundProduct = productCollection.AsEnumerable().FirstOrDefault((product) => product.ProductId == findProduct.ProductId);
                 productResult = foundProduct;
                 return Task.FromResult<Product>(productResult);
+            }
+        }
+
+        public Task<List<Product>> ShowProducts()
+        {
+            using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
+            {
+                //List<Product> products = new List<Product>();
+                var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId)).ToList();
+                // products = productCollection.ToList();
+                //products = productCollection;
+                
+                return Task.FromResult<List<Product>>(productCollection);
             }
         }
     }

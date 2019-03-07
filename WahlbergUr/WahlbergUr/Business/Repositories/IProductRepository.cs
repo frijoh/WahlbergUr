@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WahlbergUr.Models;
 
 namespace WahlbergUr.Business.Repositories
@@ -9,5 +10,6 @@ namespace WahlbergUr.Business.Repositories
         Task<bool> AddProduct(Product product);
         void DeleteProduct();
         void UpdateProduct();
+        Task<List<Product>> ShowProducts();
     }
 }

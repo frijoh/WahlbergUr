@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WahlbergUr.Models;
 
 namespace WahlbergUr.Business
@@ -7,5 +8,6 @@ namespace WahlbergUr.Business
     {
         Task<Product> GetProduct(int productId);
         Task<bool> AddProduct(Product product);
+        Task<List<Product>> ShowProducts();
     }
 }
