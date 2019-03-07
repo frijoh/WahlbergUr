@@ -1,7 +1,11 @@
-﻿namespace WahlbergUr.Business
+﻿using System.Threading.Tasks;
+using WahlbergUr.Models;
+
+namespace WahlbergUr.Business
 {
     public interface IProductHandler
     {
-        void GetProduct(int productId);
+        Task<Product> GetProduct(int productId);
+        Task<bool> AddProduct(int id);
     }
 }

@@ -7,15 +7,18 @@
 <h1>Product </h1>
 
 @{
-    var data = (Product)ViewData["Message"];
-}
-<h3>Id: @data.ProductId</h3>
-<h3>Name: @data.ProductName</h3>
-<h3>Detail: @data.ProductInformation</h3>
-<h3>Price: @data.ProductPrice</h3>
-<div id="imageContainer">
-        <img src="@Url.Content(data.ProductUrl) " width="150" height="100" alt="Image" />
-</div>
+        //var data = (Product)ViewData["Message"];
+        var product = ViewData["Product"] as Product;
+    }
+    <h3>Id: @product.ProductId</h3>
+    <h3>Name: @product.ProductName</h3>
+    <h3>Detail: @product.ProductInformation</h3>
+    <h3>Price: @product.ProductPrice</h3>
+    <div id="imageContainer">
+            <img src="@Url.Content(product.ProductUrl) " width="150" height="100" alt="Image" />
+    </div>
+
+
 
 
 

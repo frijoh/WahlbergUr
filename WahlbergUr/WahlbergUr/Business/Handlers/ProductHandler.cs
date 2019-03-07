@@ -1,12 +1,37 @@
-﻿using System;
+﻿using System.Threading.Tasks;
+using WahlbergUr.Business.Repositories;
+using WahlbergUr.Models;
 
 namespace WahlbergUr.Business.Handlers
 {
     public class ProductHandler : IProductHandler
     {
-        public void GetProduct(int productId)
+        private IProductRepository productRepository;
+
+        public ProductHandler(IProductRepository productRepository)
         {
-            throw new NotImplementedException();
+            this.productRepository = productRepository;
+        }
+
+        public async Task<bool> AddProduct(int id)
+        {
+            var foundProduct = await productRepository.AddProduct(id);
+            if (foundProduct)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<Product> GetProduct(int productId)
+        {
+            var product1 = new Product() { ProductId = productId };
+            var foundProduct = await productRepository.GetProduct(product1);
+            
+            return foundProduct;
         }
     }
 }

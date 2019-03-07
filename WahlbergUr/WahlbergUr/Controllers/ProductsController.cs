@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using WahlbergUr.Business;
 using WahlbergUr.Models;
 
 namespace WahlbergUr.Controllers
 {
     public class ProductsController : Controller
     {
-        public IActionResult Index()
+        private IProductHandler productHandler;
+
+        public ProductsController(IProductHandler productHandler)
         {
-            return View();
+            this.productHandler = productHandler;
         }
 
         public IActionResult ShowProducts()
@@ -27,27 +28,26 @@ namespace WahlbergUr.Controllers
             return View(productList);
         }
 
-        public IActionResult ShowProduct(int id)
+        public async Task<IActionResult> ShowProduct(int id)
         {
-            var productList = new List<Product>
+            var foundProduct = await productHandler.GetProduct(id);
+
+            ViewData["Product"] = new Product()
             {
-                new Product() { ProductId = 1, ProductName = "Cartier", ProductPrice = 2000, ProductInformation = "Fantastic", ProductUrl = "~/images/cartiertest.jpg" } ,
-                new Product() { ProductId = 2, ProductName = "Rolex", ProductPrice = 3000, ProductInformation = "Best Rolex", ProductUrl = "~/images/rolextest.jpg" } ,
-                new Product() { ProductId = 3, ProductName = "Seiko", ProductPrice = 4000, ProductInformation = "Super watch", ProductUrl = "~/images/seikotest.jpg" } ,
-                new Product() { ProductId = 4, ProductName = "Swiss Military", ProductPrice = 3500, ProductInformation = "Best wiss watch", ProductUrl = "~/images/swisstest.jpg" } ,
+               ProductId = foundProduct.ProductId,
+               ProductInformation = foundProduct.ProductInformation,
+               ProductName = foundProduct.ProductName,
+               ProductPrice = foundProduct.ProductPrice,
+               ProductUrl = foundProduct.ProductUrl,
             };
 
-            foreach(var product in productList)
-            {
-                if(product.ProductId == id)
-                {
-                    ViewData["Message"] = product;
-                }
-            }
+            return View();
+        }
 
-            // hämta lämplig info för specifierat id nummer och skicka till vyn, db
-
-            
+        // TODO not finished added so i could use objects in db
+        public async Task<IActionResult> AddProduct(int id)
+        {
+            var addProduct = await productHandler.AddProduct(id);
             return View();
         }
     }
