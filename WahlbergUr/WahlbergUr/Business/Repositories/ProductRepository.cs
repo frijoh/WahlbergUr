@@ -20,25 +20,16 @@ namespace WahlbergUr.Business.Repositories
         // TODO not finished, belongs to admin panel
         public async Task<bool> AddProduct(Product newProduct)
         {
-            var addProduct = new Product
-            {
-                ProductId = newProduct.ProductId,
-                ProductName = newProduct.ProductName,
-                ProductPrice = newProduct.ProductPrice,
-                ProductInformation = newProduct.ProductInformation,
-                ProductUrl = newProduct.ProductUrl,
-            };
-
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
                 // check if product exist in db
                 var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId));
-                var productExist = productCollection.AsEnumerable().Any((product) => product.ProductId == addProduct.ProductId);
+                var productExist = productCollection.AsEnumerable().Any((product) => product.ProductId == newProduct.ProductId);
 
                 if (!productExist)
                 {
                     // create product
-                    var result = await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId), addProduct);
+                    var result = await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId), newProduct);
                     return true;
                 }
                 else

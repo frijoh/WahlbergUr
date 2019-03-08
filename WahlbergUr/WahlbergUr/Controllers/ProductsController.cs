@@ -13,6 +13,7 @@ namespace WahlbergUr.Controllers
         public ProductsController(IProductHandler productHandler)
         {
             this.productHandler = productHandler;
+            
         }
 
         //public IActionResult ShowProducts()
