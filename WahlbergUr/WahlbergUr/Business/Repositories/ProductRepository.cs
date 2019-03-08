@@ -31,6 +31,7 @@ namespace WahlbergUr.Business.Repositories
 
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
+                // check if product exist in db
                 var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId));
                 var productExist = productCollection.AsEnumerable().Any((product) => product.ProductId == addProduct.ProductId);
 
@@ -47,11 +48,6 @@ namespace WahlbergUr.Business.Repositories
             }
         }
 
-        public void DeleteProduct()
-        {
-            throw new NotImplementedException();
-        }
-
         public void UpdateProduct()
         {
             throw new NotImplementedException();
@@ -61,11 +57,9 @@ namespace WahlbergUr.Business.Repositories
         {
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
-                var productResult = new Product();
                 var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId));
                 var foundProduct = productCollection.AsEnumerable().FirstOrDefault((product) => product.ProductId == findProduct.ProductId);
-                productResult = foundProduct;
-                return Task.FromResult<Product>(productResult);
+                return Task.FromResult<Product>(foundProduct);
             }
         }
 
@@ -73,12 +67,41 @@ namespace WahlbergUr.Business.Repositories
         {
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
-                //List<Product> products = new List<Product>();
                 var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId)).ToList();
-                // products = productCollection.ToList();
-                //products = productCollection;
-                
                 return Task.FromResult<List<Product>>(productCollection);
+            }
+        }
+
+        public async Task<bool> DeleteProduct(Product productToDelete)
+        {
+            using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
+            {
+                var productExist = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId),
+                new SqlQuerySpec(string.Format("SELECT * FROM product WHERE product.ProductId = '{0}'", productToDelete.ProductId))).AsEnumerable().FirstOrDefault();
+
+                if (productExist == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    await client.DeleteDocumentAsync(productExist.ToString());
+                    return true;
+                }    
+
+
+                //var productExist = await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, ProductCollectionId, productToDelete.ProductId.ToString()));
+
+                //if (productExist != null)
+                //{
+                //    return true;
+                //}
+                //else
+                //{
+                //    return false;
+                //}
+
+                
             }
         }
     }

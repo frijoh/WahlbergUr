@@ -32,35 +32,34 @@ namespace WahlbergUr.Controllers
         public async Task<IActionResult> ShowProducts()
         {
             var productList = await productHandler.ShowProducts();
-
             return View(productList);
         }
-
 
         public async Task<IActionResult> ShowProduct(int id)
         {
             var foundProduct = await productHandler.GetProduct(id);
-
-            ViewData["Product"] = new Product()
-            {
-               ProductId = foundProduct.ProductId,
-               ProductInformation = foundProduct.ProductInformation,
-               ProductName = foundProduct.ProductName,
-               ProductPrice = foundProduct.ProductPrice,
-               ProductUrl = foundProduct.ProductUrl,
-            };
-
+            ViewData["Product"] = foundProduct;
             return View();
         }
 
         // TODO not finished added so i could use objects in db, call from adminpanel
         public async Task<IActionResult> AddProduct(Product product)
         {
+            // add button adminpanel
             var addProduct = await productHandler.AddProduct(product);
 
             // if true, uppdatera showProducts och skriv ut på sidan
             // if false, hantera
 
+            return View();
+        }
+
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            // add button 
+
+            var deletedProduct = await productHandler.DeleteProduct(id);
+            
             return View();
         }
     }

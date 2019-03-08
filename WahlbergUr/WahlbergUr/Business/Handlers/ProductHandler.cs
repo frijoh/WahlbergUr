@@ -27,19 +27,31 @@ namespace WahlbergUr.Business.Handlers
             }
         }
 
+        public async Task<bool> DeleteProduct(int id)
+        {
+            var product = new Product() { ProductId = id };
+            var deletedProduct = await productRepository.DeleteProduct(product);
+
+            if (deletedProduct)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public async Task<Product> GetProduct(int productId)
         {
             var product1 = new Product() { ProductId = productId };
             var foundProduct = await productRepository.GetProduct(product1);
-            
             return foundProduct;
         }
 
         public async Task<List<Product>> ShowProducts()
         {
-            //var productList = new List<Product>();
             var productList = await productRepository.ShowProducts();
-
             return productList;
         }
     }

@@ -8,8 +8,8 @@ namespace WahlbergUr.Business.Repositories
     {
         Task<Product> GetProduct(Product product);
         Task<bool> AddProduct(Product product);
-        void DeleteProduct();
         void UpdateProduct();
         Task<List<Product>> ShowProducts();
+        Task<bool> DeleteProduct(Product product);
     }
 }
