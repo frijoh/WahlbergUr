@@ -55,12 +55,16 @@ namespace WahlbergUr.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             // add button 
 
             var deletedProduct = await productHandler.DeleteProduct(id);
-            
+            if (deletedProduct)
+            {
+                return RedirectToAction("ShowProducts");
+            }
             return View();
         }
     }

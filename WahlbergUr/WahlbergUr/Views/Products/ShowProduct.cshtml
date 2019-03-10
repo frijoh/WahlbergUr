@@ -9,12 +9,29 @@
 @{
     var product = ViewData["Product"] as Product;
 }
-<h3>Id: @product.ProductId</h3>
-<h3>Name: @product.ProductName</h3>
-<h3>Detail: @product.ProductInformation</h3>
-<h3>Price: @product.ProductPrice</h3>
-<div id="imageContainer">
-    <img src="@Url.Content(product.ProductUrl) " width="150" height="100" alt="Image" />
+<div id="displayProduct">
+    <h3>Id: @product.ProductId</h3>
+    <h3>Name: @product.ProductName</h3>
+    <h3>Detail: @product.ProductInformation</h3>
+    <h3>Price: @product.ProductPrice</h3>
+    <div id="imageContainer">
+        <img src="@Url.Content(product.ProductUrl) " width="150" height="100" alt="Image" />
+    </div>
+
+        @*<input type="button"
+            value="Delete"
+            onclick="location.href='<%: @Url.Action("DeleteProduct", "Products", new { id = product.ProductId } ) %>'" />*@
+
+        @*<form method="post" action="@Url.Action("DeleteProduct", "Products", new { id = product.ProductId })">
+
+            <input type="submit" value="Delete" />
+        </form>*@
+
+        @*@using (Html.BeginForm("DeleteProduct", "Products", FormMethod.Post, new { id = product.ProductId }))
+            {
+                <button type="submit">Delete</button>
+            }*@
+
 </div>
 
 
