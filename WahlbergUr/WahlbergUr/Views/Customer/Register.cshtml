@@ -5,7 +5,6 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -14,34 +13,35 @@
 <body>
     <div id="registerForm">
         <h4>Registration</h4>
-        <form method="post" asp-controller="Customer" asp-action="Register">
+        @using (Html.BeginForm("Register", "Customer", FormMethod.Post))
+        {
             <table border="0" cellpadding="2" cellspacing="2">
                 <tr>
                     <td>Firstname</td>
-                    <td><input type="text" name="firstname"></td>
+                    <td> @Html.TextBoxFor(model => model.FirstName)</td>
                 </tr>
                 <tr>
                     <td>Lastname</td>
-                    <td><input type="text" name="lastname"></td>
+                    <td>@Html.TextBoxFor(model => model.LastName)</td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input type="text" name="email"></td>
+                    <td>@Html.TextBoxFor(model => model.Email)</td>
                 </tr>
                 <tr>
                     <td>Username</td>
-                    <td><input type="text" name="username"></td>
+                    <td> @Html.TextBoxFor(model => model.UserName)</td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="password" name="password"></td>
+                    <td> @Html.TextBoxFor(model => model.Password)</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td><input type="submit" value="Register"></td>
+                    <td><input type="submit" id="register" value="Register"></td>
                 </tr>
             </table>
-        </form>
+        }
     </div>
 </body>
 </html>

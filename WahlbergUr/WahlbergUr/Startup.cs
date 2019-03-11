@@ -28,6 +28,8 @@ namespace WahlbergUr
         {
             services.AddSingleton<IProductHandler, ProductHandler>();
             services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddSingleton<IUserHandler, UserHandler>();
+            services.AddSingleton<IUserRepository, UserRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

@@ -1,20 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using WahlbergUr.Business.Handlers;
+using WahlbergUr.Models;
 
 namespace WahlbergUr.Controllers
 {
     public class CustomerController : Controller
     {
+        public IUserHandler userHandler;
+
+        public CustomerController(IUserHandler userHandler)
+        {
+            this.userHandler = userHandler;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Register()
+        [HttpGet]
+        public ActionResult Register()
         {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(User user)
+        {
+            // TODO handle reg. user if something
+            var registerUser = await userHandler.RegisterUser(user);
             return View();
         }
 
