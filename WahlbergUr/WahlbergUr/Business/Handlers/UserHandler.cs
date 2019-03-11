@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using WahlbergUr.Business.Repositories;
 using WahlbergUr.Models;
 
@@ -14,9 +13,18 @@ namespace WahlbergUr.Business.Handlers
             this.userRepository = userRepository;
         }
 
-        public Task<bool> LogInUser(User user)
+        public async Task<bool> LogInUser(User user)
         {
-            throw new NotImplementedException();
+            var loginUser = await userRepository.LogInUser(user);
+
+            if (loginUser == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public async Task<bool> RegisterUser(User user)

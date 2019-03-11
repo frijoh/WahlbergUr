@@ -6,6 +6,6 @@ namespace WahlbergUr.Business.Repositories
     public interface IUserRepository
     {
         Task<bool> RegisterUser(User user);
-        Task<bool> LogInUser(User user);
+        Task<User> LogInUser(User user);
     }
 }

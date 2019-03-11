@@ -13,16 +13,23 @@ namespace WahlbergUr.Business.Repositories
         private string EndPointURL = "https://localhost:8081";
         private string AuthorizationKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
 
-        public Task<bool> LogInUser(User user)
+        public async Task<User> LogInUser(User logInUser)
         {
-            throw new NotImplementedException();
+            using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
+            {
+                var userCollection = client.CreateDocumentQuery<User>(UriFactory.CreateDocumentCollectionUri(DatabaseId, UserCollectionId));
+                var loggedInUser = userCollection.AsEnumerable().FirstOrDefault((user) => user.UserName == logInUser.UserName 
+                && user.Password == logInUser.Password);
+                
+                return await Task.FromResult<User>(loggedInUser);
+            }
         }
 
         public async Task<bool> RegisterUser(User newUser)
         {
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
-                // check if product exist in db
+                // check if user exist in db
                 var userCollection = client.CreateDocumentQuery<User>(UriFactory.CreateDocumentCollectionUri(DatabaseId, UserCollectionId));
                 var userExist = userCollection.AsEnumerable().Any((user) => user.UserName == newUser.UserName);
 

@@ -33,8 +33,26 @@ namespace WahlbergUr.Controllers
             return View();
         }
 
-        public IActionResult LogIn()
+        [HttpGet]
+        public ActionResult LogIn()
         {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogIn(User user)
+        {
+            // TODO handle logged in user if something is true send to private customer view
+            var loginUser = await userHandler.LogInUser(user);
+            if (!loginUser)
+            {
+                // handle login problem
+            }
+            else
+            {
+                // User is logged in
+            }
+
             return View();
         }
     }

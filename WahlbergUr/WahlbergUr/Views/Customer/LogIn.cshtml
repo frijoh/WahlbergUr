@@ -1,9 +1,38 @@
-﻿
+﻿@model WahlbergUr.Models.User
+
 @{
     ViewData["Title"] = "LogIn";
 }
 
-<h1>LogIn</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Log in</title>
+</head>
+<body>
+    <div id="loginForm">
+        <h4>Log in</h4>
+        @using (Html.BeginForm("LogIn", "Customer", FormMethod.Post))
+        {
+            <table border="0" cellpadding="2" cellspacing="2">
+                <tr>
+                    <td>Username</td>
+                    <td> @Html.TextBoxFor(model => model.UserName)</td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td> @Html.TextBoxFor(model => model.Password)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" id="login" value="Log in"></td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>
 
 
 
