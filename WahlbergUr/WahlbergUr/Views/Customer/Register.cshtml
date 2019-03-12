@@ -13,35 +13,62 @@
 <body>
     <div id="registerForm">
         <h4>Registration</h4>
-        @using (Html.BeginForm("Register", "Customer", FormMethod.Post))
-        {
-            <table border="0" cellpadding="2" cellspacing="2">
-                <tr>
-                    <td>Firstname</td>
-                    <td> @Html.TextBoxFor(model => model.FirstName)</td>
-                </tr>
-                <tr>
-                    <td>Lastname</td>
-                    <td>@Html.TextBoxFor(model => model.LastName)</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>@Html.TextBoxFor(model => model.Email)</td>
-                </tr>
-                <tr>
-                    <td>Username</td>
-                    <td> @Html.TextBoxFor(model => model.UserName)</td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td> @Html.TextBoxFor(model => model.Password)</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td><input type="submit" id="register" value="Register"></td>
-                </tr>
-            </table>
-        }
+        <form method="post" asp-controller="Customer" asp-action="Register">
+            <div class="form-group">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode"></label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdNumber"></label>
+                <input asp-for="IdNumber" class="form-control" />
+                <span asp-validation-for="IdNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <br />
+                <button type="submit" class="btn btn-default">Register</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>

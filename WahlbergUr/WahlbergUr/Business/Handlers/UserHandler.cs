@@ -13,18 +13,11 @@ namespace WahlbergUr.Business.Handlers
             this.userRepository = userRepository;
         }
 
-        public async Task<bool> LogInUser(User user)
+        public async Task<User> LogInUser(User user)
         {
             var loginUser = await userRepository.LogInUser(user);
 
-            if (loginUser == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return loginUser;
         }
 
         public async Task<bool> RegisterUser(User user)

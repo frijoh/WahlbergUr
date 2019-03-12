@@ -9,6 +9,8 @@ namespace WahlbergUr.Controllers
     {
         public IUserHandler userHandler;
 
+        public object FormsAuthentication { get; private set; }
+
         public CustomerController(IUserHandler userHandler)
         {
             this.userHandler = userHandler;
@@ -28,9 +30,19 @@ namespace WahlbergUr.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(User user)
         {
-            // TODO handle reg. user if something
-            var registerUser = await userHandler.RegisterUser(user);
-            return View();
+            if (ModelState.IsValid)
+            {
+                var registerUser = await userHandler.RegisterUser(user);
+                if (registerUser)
+                {
+                    return RedirectToAction("LogIn", "Customer");
+                }
+                else
+                {
+                    ModelState.AddModelError("UserName", "Username Already Exist");
+                }
+            }
+            return View(user);
         }
 
         [HttpGet]
@@ -40,20 +52,38 @@ namespace WahlbergUr.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> LogIn(User user)
+        public async Task<IActionResult> LogIn(LogInUser logInUser)
         {
-            // TODO handle logged in user if something is true send to private customer view
-            var loginUser = await userHandler.LogInUser(user);
-            if (!loginUser)
+            if (ModelState.IsValid)
             {
-                // handle login problem
+                var user = new User()
+                {
+                    UserName = logInUser.UserName,
+                    Password = logInUser.Password,
+                };
+                
+                var loggedInUser = await userHandler.LogInUser(user);
+                if (loggedInUser == null)
+                {
+                    ModelState.AddModelError("UserName", "Username or Password Incorrect!");
+                    ModelState.Clear();
+                    return View();
+                }
+                else
+                {
+                    if(loggedInUser.UserName == "Eva")
+                    {
+                        // redirect to admin page, TODO, auth
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else
+                    {
+                        // TODO redirect to private page
+                        return RedirectToAction("Index", "Customer");
+                    }
+                }
             }
-            else
-            {
-                // User is logged in
-            }
-
-            return View();
+            return View(logInUser);
         }
     }
 }
