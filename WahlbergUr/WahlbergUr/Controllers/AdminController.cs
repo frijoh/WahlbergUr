@@ -80,25 +80,22 @@ namespace WahlbergUr.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> DeleteProduct(int id)
-        //{
-        //    var foundProduct = await productHandler.GetProduct(id);
-        //    ViewData["Product"] = foundProduct;
-        //    return View();
-        //}
-
         [HttpPost]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            // add button 
+            var product = await productHandler.GetProduct(id);
+            var deletedProduct = await productHandler.DeleteProduct(product);
 
-            var deletedProduct = await productHandler.DeleteProduct(id);
             if (deletedProduct)
             {
-                // update productlist
+                //uppdate Product
+                return RedirectToAction("ShowProducts", "Products");
+                
             }
-            return View();
+            else
+            {
+                return View("NotFound");
+            }
         }
     }
 }

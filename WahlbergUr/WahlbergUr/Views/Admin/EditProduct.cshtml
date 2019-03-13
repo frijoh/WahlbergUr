@@ -48,11 +48,11 @@
                 <button type="submit" class="btn btn-default">Edit Product</button>
             </div>
         </form>
-        <form method="post" asp-controller="Admin" asp-action="DeleteProduct">
+        <form method="post" asp-controller="Admin" asp-action="DeleteProduct" asp-route-id="@product.ProductId">
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Delete Product</button>
             </div>
-            </form>
+        </form>
     </div>
 </body>
 </html>

@@ -27,9 +27,8 @@ namespace WahlbergUr.Business.Handlers
             }
         }
 
-        public async Task<bool> DeleteProduct(int id)
+        public async Task<bool> DeleteProduct(Product product)
         {
-            var product = new Product() { ProductId = id };
             var deletedProduct = await productRepository.DeleteProduct(product);
 
             if (deletedProduct)

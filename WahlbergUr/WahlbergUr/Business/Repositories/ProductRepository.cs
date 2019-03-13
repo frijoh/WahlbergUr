@@ -39,20 +39,20 @@ namespace WahlbergUr.Business.Repositories
         {
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
-                var doc = client.CreateDocumentQuery<Product>(
+                var product = client.CreateDocumentQuery<Product>(
                     UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId))
                             .Where(x => x.ProductId == updateProduct.ProductId)
                             .AsEnumerable()
                             .SingleOrDefault();
 
-                doc.ProductId = updateProduct.ProductId;
-                doc.ProductName = updateProduct.ProductName;
-                doc.ProductInformation = updateProduct.ProductInformation;
-                doc.ProductPrice = updateProduct.ProductPrice;
-                doc.ProductUrl = updateProduct.ProductUrl;
+                product.ProductId = updateProduct.ProductId;
+                product.ProductName = updateProduct.ProductName;
+                product.ProductInformation = updateProduct.ProductInformation;
+                product.ProductPrice = updateProduct.ProductPrice;
+                product.ProductUrl = updateProduct.ProductUrl;
 
-                var result = await client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId), doc);// (UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId), updateProduct);
-                return doc;
+                var result = await client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId), product);
+                return product;
             }
         }
 
@@ -79,48 +79,15 @@ namespace WahlbergUr.Business.Repositories
         {
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
-                //var productExist = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId),
-                //new SqlQuerySpec(string.Format("SELECT * FROM product WHERE product.ProductId = '{0}'", productToDelete.ProductId))).AsEnumerable().FirstOrDefault();
-
-                //var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId));
-                //var productExist = productCollection.AsEnumerable().Any((product) => product.ProductId == productToDelete.ProductId);
-                var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId)).ToList();
-                foreach (var product in productCollection)
+                if(productToDelete == null)
                 {
-                    if (product.ProductId == productToDelete.ProductId)
-                    {
-                        //Uri doc = UriFactory.CreateDocumentUri(DatabaseId, ProductCollectionId, product.ProductId.ToString());
-                        //await client.DeleteDocumentAsync(doc);
-
-                        await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, ProductCollectionId, product.ProductId.ToString()));
-                        return true;
-                    }
-
+                    return false;
                 }
-                return false;
-
-                //if (productExist == null)
-                //{
-                //    return false;
-                //}
-                //else
-                //{
-
-                //    await client.DeleteDocumentAsync(productExist.ToString());
-                //    return true;
-                //}
-
-
-                //var productExist = await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, ProductCollectionId, productToDelete.ProductId.ToString()));
-
-                //if (productExist != null)
-                //{
-                //    return true;
-                //}
-                //else
-                //{
-                //    return false;
-                //}
+                else
+                {
+                    await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, ProductCollectionId, productToDelete.id));
+                    return true;
+                } 
             }
         }
     }

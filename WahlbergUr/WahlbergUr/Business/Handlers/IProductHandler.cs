@@ -9,7 +9,7 @@ namespace WahlbergUr.Business
         Task<Product> GetProduct(int productId);
         Task<bool> AddProduct(Product product);
         Task<List<Product>> ShowProducts();
-        Task<bool> DeleteProduct(int id);
+        Task<bool> DeleteProduct(Product product);
         Task<Product> UpdateProduct(Product product);
     }
 }
