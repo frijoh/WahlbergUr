@@ -16,7 +16,6 @@ namespace WahlbergUr.Business.Handlers
         public async Task<User> LogInUser(User user)
         {
             var loginUser = await userRepository.LogInUser(user);
-
             return loginUser;
         }
 

@@ -14,9 +14,6 @@ namespace WahlbergUr.Business.Repositories
         private string EndPointURL = "https://localhost:8081";
         private string AuthorizationKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
 
-
-        // Added to test get funktion 
-        // TODO not finished, belongs to admin panel
         public async Task<bool> AddProduct(Product newProduct)
         {
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
@@ -38,9 +35,25 @@ namespace WahlbergUr.Business.Repositories
             }
         }
 
-        public void UpdateProduct()
+        public async Task<Product> UpdateProduct(Product updateProduct)
         {
-            throw new NotImplementedException();
+            using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
+            {
+                var doc = client.CreateDocumentQuery<Product>(
+                    UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId))
+                            .Where(x => x.ProductId == updateProduct.ProductId)
+                            .AsEnumerable()
+                            .SingleOrDefault();
+
+                doc.ProductId = updateProduct.ProductId;
+                doc.ProductName = updateProduct.ProductName;
+                doc.ProductInformation = updateProduct.ProductInformation;
+                doc.ProductPrice = updateProduct.ProductPrice;
+                doc.ProductUrl = updateProduct.ProductUrl;
+
+                var result = await client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId), doc);// (UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId), updateProduct);
+                return doc;
+            }
         }
 
         public Task<Product> GetProduct(Product findProduct)
@@ -72,9 +85,9 @@ namespace WahlbergUr.Business.Repositories
                 //var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId));
                 //var productExist = productCollection.AsEnumerable().Any((product) => product.ProductId == productToDelete.ProductId);
                 var productCollection = client.CreateDocumentQuery<Product>(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId)).ToList();
-                foreach(var product in productCollection)
+                foreach (var product in productCollection)
                 {
-                    if(product.ProductId == productToDelete.ProductId)
+                    if (product.ProductId == productToDelete.ProductId)
                     {
                         //Uri doc = UriFactory.CreateDocumentUri(DatabaseId, ProductCollectionId, product.ProductId.ToString());
                         //await client.DeleteDocumentAsync(doc);
@@ -82,7 +95,7 @@ namespace WahlbergUr.Business.Repositories
                         await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, ProductCollectionId, product.ProductId.ToString()));
                         return true;
                     }
-                    
+
                 }
                 return false;
 
@@ -92,11 +105,11 @@ namespace WahlbergUr.Business.Repositories
                 //}
                 //else
                 //{
-                    
+
                 //    await client.DeleteDocumentAsync(productExist.ToString());
                 //    return true;
                 //}
-               
+
 
                 //var productExist = await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, ProductCollectionId, productToDelete.ProductId.ToString()));
 
@@ -108,8 +121,6 @@ namespace WahlbergUr.Business.Repositories
                 //{
                 //    return false;
                 //}
-
-
             }
         }
     }

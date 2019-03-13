@@ -1,39 +1,32 @@
 ﻿@model WahlbergUr.Models.Product
 
 @{
-    ViewData["Title"] = "ShowProduct";
+    ViewData["Title"] = "Show Product";
 }
 
-<h1>Product </h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show Product</title>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
 
-@{
-    var product = ViewData["Product"] as Product;
-}
-<div id="displayProduct">
-    <h3>Id: @product.ProductId</h3>
-    <h3>Name: @product.ProductName</h3>
-    <h3>Detail: @product.ProductInformation</h3>
-    <h3>Price: @product.ProductPrice</h3>
-    <div id="imageContainer">
-        <img src="@Url.Content(product.ProductUrl) " width="150" height="100" alt="Image" />
+    @{
+        var product = ViewData["Product"] as Product;
+    }
+    <div id="displayProduct">
+        <h3>Id: @product.ProductId</h3>
+        <h3>Name: @product.ProductName</h3>
+        <h3>Detail: @product.ProductInformation</h3>
+        <h3>Price: @product.ProductPrice</h3>
+        <div id="imageContainer">
+            <img src="@Url.Content(product.ProductUrl) " width="150" height="100" alt="Image" />
+        </div>
     </div>
-
-        @*<input type="button"
-            value="Delete"
-            onclick="location.href='<%: @Url.Action("DeleteProduct", "Products", new { id = product.ProductId } ) %>'" />*@
-
-        @*<form method="post" action="@Url.Action("DeleteProduct", "Products", new { id = product.ProductId })">
-
-            <input type="submit" value="Delete" />
-        </form>*@
-
-        @*@using (Html.BeginForm("DeleteProduct", "Products", FormMethod.Post, new { id = product.ProductId }))
-            {
-                <button type="submit">Delete</button>
-            }*@
-
-</div>
-
+    </body>
+</html>
 
 
 

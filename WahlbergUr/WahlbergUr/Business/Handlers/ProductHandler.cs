@@ -54,5 +54,11 @@ namespace WahlbergUr.Business.Handlers
             var productList = await productRepository.ShowProducts();
             return productList;
         }
+
+        public async Task<Product> UpdateProduct(Product product)
+        {
+            var updatedProduct = await productRepository.UpdateProduct(product);
+            return updatedProduct;
+        }
     }
 }

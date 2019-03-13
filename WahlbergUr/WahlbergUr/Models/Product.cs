@@ -1,9 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace WahlbergUr.Models
 {
     public class Product
     {
+        //[JsonProperty(PropertyName = "_self")]
+        //public string SelfLink { get; set; }
+
+        [JsonProperty(PropertyName = "id")]
+        public string id { get; set; }
+
         [Required]
         public int ProductId { get; set; }
 
@@ -22,6 +29,8 @@ namespace WahlbergUr.Models
 
         [Required]
         public string ProductUrl { get; set; }
+
+        //public object Type { get; internal set; }
 
         //public int Quantity { get; set; }
     }

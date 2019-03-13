@@ -1,0 +1,59 @@
+﻿@model WahlbergUr.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Product</title>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+    <div id="editProduct">
+        @{
+            var product = ViewData["Product"] as Product;
+        }
+
+        <form method="post" asp-controller="Admin" asp-action="EditProduct">
+            <div class="form-group">
+                <label asp-for="ProductId"></label>
+                <input asp-for="ProductId" class="form-control" value="@product.ProductId" />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName"></label>
+                <input asp-for="ProductName" class="form-control" value="@product.ProductName" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductInformation"></label>
+                <input asp-for="ProductInformation" class="form-control" value="@product.ProductInformation" />
+                <span asp-validation-for="ProductInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice"></label>
+                <input asp-for="ProductPrice" class="form-control" value="@product.ProductPrice" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductUrl"></label>
+                <input asp-for="ProductUrl" class="form-control" value="@product.ProductUrl" />
+                <span asp-validation-for="ProductUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <br />
+                <button type="submit" class="btn btn-default">Edit Product</button>
+            </div>
+        </form>
+        <form method="post" asp-controller="Admin" asp-action="DeleteProduct">
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Delete Product</button>
+            </div>
+            </form>
+    </div>
+</body>
+</html>
+

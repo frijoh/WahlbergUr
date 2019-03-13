@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<WahlbergUr.Models.Product>
+
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Edit Products";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Show Products</title>
+    <title>Edit Products</title>
 </head>
 <body>
     <h1>@ViewData["Title"]</h1>
@@ -16,7 +17,7 @@
         @foreach (var item in Model)
         {
             <div id="imageContainer">
-                <a href="@Url.Action("ShowProduct", "Products", new { id = item.ProductId})">
+                <a href="@Url.Action("EditProduct", "Admin", new { id = item.ProductId})">
                     <img src="@Url.Content(item.ProductUrl) " height="60" width="50" alt="Image" />
                 </a>
             </div>
@@ -27,3 +28,4 @@
     </div>
 </body>
 </html>
+

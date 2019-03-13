@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WahlbergUr.Business;
 using WahlbergUr.Models;
 
 namespace WahlbergUr.Controllers
 {
-    
+
     public class AdminController : Controller
     {
         private IProductHandler productHandler;
@@ -14,14 +13,12 @@ namespace WahlbergUr.Controllers
         public AdminController(IProductHandler productHandler)
         {
             this.productHandler = productHandler;
-
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
 
         [HttpGet]
         public IActionResult AddProduct()
@@ -38,7 +35,7 @@ namespace WahlbergUr.Controllers
                 var addProduct = await productHandler.AddProduct(product);
                 if (addProduct)
                 {
-                    //uppdate showProducts
+                    //uppdate Product
                     await TryUpdateModelAsync(product);
                     return RedirectToAction("ShowProducts", "Products", new { id = product.ProductId });
                 }
@@ -48,6 +45,48 @@ namespace WahlbergUr.Controllers
             }
             return View();
         }
+
+        public async Task<IActionResult> EditProducts()
+        {
+            var productList = await productHandler.ShowProducts();
+            return View(productList);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditProduct(int id)
+        {
+            var foundProduct = await productHandler.GetProduct(id);
+            ViewData["Product"] = foundProduct;
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProduct(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                var updatedProduct = await productHandler.UpdateProduct(product);
+                if(updatedProduct == null)
+                {
+                    ModelState.AddModelError("ProductId", "Something went wrong");
+                }
+                else
+                {
+                    //uppdate Product
+                    await TryUpdateModelAsync(updatedProduct);
+                    return RedirectToAction("ShowProducts", "Products", new { id = updatedProduct.ProductId });
+                }
+            }
+            return View();
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> DeleteProduct(int id)
+        //{
+        //    var foundProduct = await productHandler.GetProduct(id);
+        //    ViewData["Product"] = foundProduct;
+        //    return View();
+        //}
 
         [HttpPost]
         public async Task<IActionResult> DeleteProduct(int id)

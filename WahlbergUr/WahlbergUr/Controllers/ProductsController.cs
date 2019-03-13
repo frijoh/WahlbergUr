@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using WahlbergUr.Business;
-using WahlbergUr.Models;
 
 namespace WahlbergUr.Controllers
 {
@@ -42,26 +40,5 @@ namespace WahlbergUr.Controllers
             ViewData["Product"] = foundProduct;
             return View();
         }
-
-        //[HttpGet]
-        //public IActionResult AddProduct()
-        //{
-        //    return View();
-        //}
-
-        //// TODO not finished added so i could use objects in db, call from adminpanel
-        //[HttpPost, ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AddProduct(Product product)
-        //{
-        //    // add button adminpanel
-        //    var addProduct = await productHandler.AddProduct(product);
-
-        //    // if true, uppdatera showProducts och skriv ut på sidan
-        //    // if false, hantera
-
-        //    return View();
-        //}
-
-        
     }
 }
