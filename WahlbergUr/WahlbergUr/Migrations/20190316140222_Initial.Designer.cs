@@ -10,7 +10,7 @@ using WahlbergUr.Data;
 namespace WahlbergUr.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190315144924_Initial")]
+    [Migration("20190316140222_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

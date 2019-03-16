@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WahlbergUr.Business;
 using WahlbergUr.Models;
 
 namespace WahlbergUr.Controllers
 {
-
+    [Authorize(Policy = "Administrator")]
     public class AdminController : Controller
     {
         private IProductHandler productHandler;
@@ -25,6 +26,7 @@ namespace WahlbergUr.Controllers
         {
             return View();
         }
+
 
         // TODO not finished added so i could use objects in db, call from adminpanel
         [HttpPost, ValidateAntiForgeryToken]

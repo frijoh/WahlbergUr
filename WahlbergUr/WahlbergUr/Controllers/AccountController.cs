@@ -82,7 +82,7 @@ namespace WahlbergUr.Controllers
                 if (result.Succeeded)
                 {
                     logger.LogInformation("User created a new account with password.");
-                    //await userManager.AddToRoleAsync(user, "Member");
+                    await userManager.AddToRoleAsync(user, "Member");
 
                     await signInManager.SignInAsync(user, isPersistent: false);
                     logger.LogInformation("User created a new account with password.");
@@ -126,20 +126,17 @@ namespace WahlbergUr.Controllers
                 if (result.Succeeded)
                 {
                     logger.LogInformation("User logged in.");
+                    
+                    var tmpuser = await userManager.FindByNameAsync(model.UserName/*Configuration.GetSection("AppSettings")["UserEmail"]*/);
 
-
-                    //var tmpuser = await userManager.FindByNameAsync(model.UserName/*Configuration.GetSection("AppSettings")["UserEmail"]*/);
-
-                    //if (await userManager.IsInRoleAsync(tmpuser, "Admin"))
-                    //{
-                    //    return RedirectToAction("Privacy", "Home");
-                    //}
-                    //if (await userManager.IsInRoleAsync(tmpuser, "Member"))
-                    //{
-                    //    int i = 0;
-                    //}
-
-                    return RedirectToAction("Index", "Home");
+                    if (await userManager.IsInRoleAsync(tmpuser, "Admin"))
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else if(await userManager.IsInRoleAsync(tmpuser, "Member"))
+                    {
+                        return RedirectToAction("Index", "Customer");
+                    }
                 }
                 if (result.IsLockedOut)
                 {
@@ -152,8 +149,7 @@ namespace WahlbergUr.Controllers
                     return View(model);
                 }
             }
-
-            // If we got this far, something failed, redisplay form
+            
             return View(model);
         }
 
