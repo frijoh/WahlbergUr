@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using WahlbergUr.Business;
 using WahlbergUr.Business.Handlers;
 using WahlbergUr.Business.Repositories;
+using Microsoft.EntityFrameworkCore;
+using WahlbergUr.Data;
+using Microsoft.AspNetCore.Identity;
+using WahlbergUr.Models;
 
 namespace WahlbergUr
 {
@@ -38,6 +42,12 @@ namespace WahlbergUr
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<User, IdentityRole>()
+           .AddEntityFrameworkStores<ApplicationDbContext>()
+           .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -55,6 +65,7 @@ namespace WahlbergUr
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>

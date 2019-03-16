@@ -70,9 +70,10 @@
             </div>
             <div class="mainnav-right">
                 <ul>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Register">Register</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="LogIn">Log in</a></li>
+                    @*<li><a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Register">Register</a></li>
+                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="LogIn">Log in</a></li>*@
                 </ul>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
             <div class="clear"></div>
         </div>

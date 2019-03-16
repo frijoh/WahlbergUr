@@ -18,10 +18,11 @@ namespace WahlbergUr.Business.Repositories
             using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
             {
                 var userCollection = client.CreateDocumentQuery<User>(UriFactory.CreateDocumentCollectionUri(DatabaseId, UserCollectionId));
-                var loggedInUser = userCollection.AsEnumerable().FirstOrDefault((user) => user.UserName == logInUser.UserName 
-                && user.Password == logInUser.Password);
-                
-                return await Task.FromResult<User>(loggedInUser);
+                //var loggedInUser = userCollection.AsEnumerable().FirstOrDefault((user) => user.UserName == logInUser.UserName 
+                //&& user.Password == logInUser.Password);
+
+                //return await Task.FromResult<User>(loggedInUser);
+                return null;
             }
         }
 
