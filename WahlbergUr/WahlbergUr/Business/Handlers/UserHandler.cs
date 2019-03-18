@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using WahlbergUr.Business.Repositories;
 using WahlbergUr.Models;
 
@@ -6,31 +8,27 @@ namespace WahlbergUr.Business.Handlers
 {
     public class UserHandler : IUserHandler
     {
-        public IUserRepository userRepository;
+        private IUserRepository userRepository;
 
         public UserHandler(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
         }
 
-        public async Task<User> LogInUser(User user)
+        public async Task<List<EditUser>> GetUsers()
         {
-            var loginUser = await userRepository.LogInUser(user);
-            return loginUser;
-        }
-
-        public async Task<bool> RegisterUser(User user)
-        {
-            var registerUser = await userRepository.RegisterUser(user);
-
-            if (registerUser)
+            var editUsers = new List<EditUser>();
+            var users = await userRepository.GetUsers();
+            foreach (var user in users)
             {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                editUsers.Add(new EditUser()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
+                });
+            }     
+            return editUsers;
         }
     }
 }

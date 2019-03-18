@@ -66,7 +66,17 @@ namespace WahlbergUr.Business.Repositories
 
         public Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.Run(() =>
+            {
+                var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey);
+                return client.CreateDocumentQuery<User>(
+                   UriFactory.CreateDocumentCollectionUri(
+                       DatabaseId,
+                       IdentityUserCollection))
+                       .AsEnumerable()
+                       .Where(identityUser => identityUser.Id == userId)
+                       .FirstOrDefault();
+            }, cancellationToken);
         }
 
         public Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)

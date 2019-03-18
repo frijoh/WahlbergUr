@@ -12,12 +12,13 @@ namespace WahlbergUr.Controllers
     {
         private IProductHandler productHandler;
         private IShopHandler shopHandler;
+        private IUserHandler userHandler;
 
-        public AdminController(IProductHandler productHandler, IShopHandler shopHandler)
+        public AdminController(IProductHandler productHandler, IShopHandler shopHandler, IUserHandler userHandler)
         {
             this.productHandler = productHandler;
             this.shopHandler = shopHandler;
-           
+            this.userHandler = userHandler;
         }
 
         public IActionResult Index()
@@ -167,6 +168,12 @@ namespace WahlbergUr.Controllers
                 }
             }
             return View();
+        }
+
+        public async Task<IActionResult> ListCustomers()
+        {
+            var result = await userHandler.GetUsers();
+            return View(result);
         }
     }
 }
