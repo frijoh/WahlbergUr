@@ -1,0 +1,80 @@
+﻿@model WahlbergUr.Models.Shop
+
+@{
+    ViewData["Title"] = "AddShopInformation";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddShopInformation</title>
+</head>
+<body>
+    <div id="addShop">
+        <h4>Ändra butikens information</h4>
+        <form method="post" asp-controller="Admin" asp-action="AddShopInformation">
+            <div class="form-group">
+                <label asp-for="FromDay"></label>
+                <input asp-for="FromDay" class="form-control" />
+                <span asp-validation-for="FromDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDay"></label>
+                <input asp-for="ToDay" class="form-control" />
+                <span asp-validation-for="ToDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OpeningHours"></label>
+                <input asp-for="OpeningHours" class="form-control" />
+                <span asp-validation-for="OpeningHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClosingHours"></label>
+                <input asp-for="ClosingHours" class="form-control" />
+                <span asp-validation-for="ClosingHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weekend"></label>
+                <input asp-for="Weekend" class="form-control" />
+                <span asp-validation-for="Weekend" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsClosed"></label>
+                <input asp-for="IsClosed" class="form-control" />
+                <span asp-validation-for="IsClosed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode"></label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShopInformation"></label>
+                <input asp-for="ShopInformation" class="form-control" />
+                <span asp-validation-for="ShopInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <br />
+                <button type="submit" class="btn btn-default">Add Information</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

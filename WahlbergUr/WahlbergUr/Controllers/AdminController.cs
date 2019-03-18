@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WahlbergUr.Business;
+using WahlbergUr.Business.Handlers;
 using WahlbergUr.Models;
 
 namespace WahlbergUr.Controllers
@@ -10,10 +11,13 @@ namespace WahlbergUr.Controllers
     public class AdminController : Controller
     {
         private IProductHandler productHandler;
+        private IShopHandler shopHandler;
 
-        public AdminController(IProductHandler productHandler)
+        public AdminController(IProductHandler productHandler, IShopHandler shopHandler)
         {
             this.productHandler = productHandler;
+            this.shopHandler = shopHandler;
+           
         }
 
         public IActionResult Index()
@@ -28,7 +32,6 @@ namespace WahlbergUr.Controllers
         }
 
 
-        // TODO not finished added so i could use objects in db, call from adminpanel
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddProduct(Product product)
         {
@@ -92,12 +95,78 @@ namespace WahlbergUr.Controllers
             {
                 //uppdate Product
                 return RedirectToAction("ShowProducts", "Products");
-                
             }
             else
             {
                 return View("NotFound");
             }
+        }
+
+
+        public IActionResult EditCustomerInformation()
+        {
+            return View();
+        }
+        
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult AddCustomerInformation()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditShopInformation()
+        {
+            var shop = new Shop();
+            var shopInformation = await shopHandler.GetShopInformation(shop);
+            ViewData["Information"] = shopInformation;
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditShopInformation(Shop shop)
+        {
+            if (ModelState.IsValid)
+            {
+                var shopInformation = await shopHandler.UpdateShopInformation(shop);
+                if (shopInformation == null)
+                {
+                    ModelState.AddModelError("FromDay", "Something went wrong");
+                }
+                else
+                {
+                    //uppdate Shop
+                    await TryUpdateModelAsync(shopInformation);
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                }
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddShopInformation()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddShopInformation(Shop shop)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var addShopInformation = await shopHandler.AddShopInformation(shop);
+                if (addShopInformation)
+                {
+                    //uppdate Product
+                    await TryUpdateModelAsync(shop);
+                }
+                else
+                {
+                    ModelState.AddModelError("FromDay", "Something went wrong");
+                }
+            }
+            return View();
         }
     }
 }

@@ -1,21 +1,23 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Admin";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Add Product</title>
+    <title>Admin Page</title>
 </head>
 <body>
     @*<div class="mainnav-container">
             <div class="mainnav-left">*@
-                <ul>
-                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddProduct">Add Product</a></li>
-                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EditProducts">Edit Products</a></li>
-                </ul>
+    <ul>
+        <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddProduct">Lägg till Produkt</a></li>
+        <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EditProducts">Ändra en Produkt</a></li>
+        <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddShopInformation">Lägg till Butiksinformation</a></li>
+        <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EditShopInformation">Ändra Butiksinformation</a></li>
+    </ul>
             @*</div>
         </div>*@
 </body>

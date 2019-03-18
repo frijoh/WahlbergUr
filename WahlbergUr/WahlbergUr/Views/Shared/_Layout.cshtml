@@ -6,22 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="description" content="This is a web page for a small clock business in Stockholm" />
     <meta name="keywords" content="Keywords for you web page go here. Each keyword or group of keyword phrases are separated by a comma. Keep this keyword list short and relevant to the content of this specific page and also relevant to the tile of the specific page." />
-    @*<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>*@
 
     <title>@ViewData["Title"] - WahlbergUr</title>
     <link rel="shortcut icon" href="~/images/favicon.ico" />
     <link href="~/css/site.css" rel="stylesheet" type="text/css" />
-
-    <!--environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    </environment>
-    <environment-- exclude="Development">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-              crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
-    </environment-->
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -70,8 +58,6 @@
             </div>
             <div class="mainnav-right">
                 <ul>
-                    @*<li><a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Register">Register</a></li>
-                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="LogIn">Log in</a></li>*@
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -89,21 +75,7 @@
 
         -->
             <div id="content-side">
-                <div class="section-title-not-heading">Opening hours</div>
-                <p>Monday - Friday:</p>
-                <p>10:00-18:00</p>
-                <p>Saturday - Sunday:</p>
-                <p>Closed</p>
-                <div class="separator-side-column"></div>
-                <p>Address:</p>
-                <p>Tegnergatan 16</p>
-                <p>113 58 Stockholm</p>
-                <p>Telephone:</p>
-                <p>08-673 00 45</p>
-                <div class="separator-side-column">
-                    <p>Information:</p>
-                    <p> closed 19-22/4</p>
-                </div>
+                @await Component.InvokeAsync("ShopManager")
                 <div class="separator-side-column"></div>
             </div>
             <!--

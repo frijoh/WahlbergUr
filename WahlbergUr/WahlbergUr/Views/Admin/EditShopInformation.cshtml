@@ -1,0 +1,84 @@
+﻿@model WahlbergUr.Models.Shop
+
+@{
+    ViewData["Title"] = "Ändra Butiksinformation";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ändra butiksinformation</title>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+    <div id="editShopInformation">
+        @{
+            var shopInformation = ViewData["Information"] as Shop;
+        }
+
+        <form method="post" asp-controller="Admin" asp-action="EditShopInformation">
+            <div class="form-group">
+                <label asp-for="FromDay"></label>
+                <input asp-for="FromDay" class="form-control" value="@shopInformation.FromDay"/>
+                <span asp-validation-for="FromDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDay"></label>
+                <input asp-for="ToDay" class="form-control" value="@shopInformation.ToDay"/>
+                <span asp-validation-for="ToDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OpeningHours"></label>
+                <input asp-for="OpeningHours" class="form-control" value="@shopInformation.OpeningHours"/>
+                <span asp-validation-for="OpeningHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClosingHours"></label>
+                <input asp-for="ClosingHours" class="form-control" value="@shopInformation.ClosingHours"/>
+                <span asp-validation-for="ClosingHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weekend"></label>
+                <input asp-for="Weekend" class="form-control" value="@shopInformation.Weekend"/>
+                <span asp-validation-for="Weekend" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsClosed"></label>
+                <input asp-for="IsClosed" class="form-control" value="@shopInformation.IsClosed"/>
+                <span asp-validation-for="IsClosed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address"></label>
+                <input asp-for="Address" class="form-control" value="@shopInformation.Address" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode"></label>
+                <input asp-for="PostalCode" class="form-control" value="@shopInformation.PostalCode" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City"></label>
+                <input asp-for="City" class="form-control" value="@shopInformation.City"  />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" value="@shopInformation.PhoneNumber" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShopInformation"></label>
+                <input asp-for="ShopInformation" class="form-control" value="@shopInformation.ShopInformation" />
+                <span asp-validation-for="ShopInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <br />
+                <button type="submit" class="btn btn-default">Ändra Information</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
