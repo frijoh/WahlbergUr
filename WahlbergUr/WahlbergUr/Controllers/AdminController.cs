@@ -137,7 +137,7 @@ namespace WahlbergUr.Controllers
                 {
                     //uppdate Shop
                     await TryUpdateModelAsync(shopInformation);
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                    return RedirectToAction(nameof(AdminController.Index), "Admin");
                 }
             }
             return View();

@@ -31,7 +31,5 @@ namespace WahlbergUr.Models
         public string ProductUrl { get; set; }
 
         //public object Type { get; internal set; }
-
-        //public int Quantity { get; set; }
     }
 }

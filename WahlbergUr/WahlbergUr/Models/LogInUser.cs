@@ -5,7 +5,7 @@ namespace WahlbergUr.Models
     public class LogInUser
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "Användarnamn")]
         public string UserName { get; set; }
 
         [Required]

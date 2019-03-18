@@ -114,12 +114,6 @@ namespace WahlbergUr.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                //ApplicationUser user = new ApplicationUser
-                //{
-                //    UserName = model.UserName,
-
-                //};
-
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);

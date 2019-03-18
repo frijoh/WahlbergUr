@@ -10,49 +10,49 @@ namespace WahlbergUr.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(30, ErrorMessage = "{0} måste vara minst {2} och max {1} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Bekräfta Lösenord")]
+        [Compare("Password", ErrorMessage = "Lösenordet och det bekräftade lösenordet är olika!")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "FirstName")]
-        [StringLength(maximumLength: 25, MinimumLength = 2, ErrorMessage = "Length must be between 2 to 25")]
+        [Display(Name = "Förnamn")]
+        [StringLength(maximumLength: 25, MinimumLength = 2, ErrorMessage = "Längden måste vara mellan 2 och 25")]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "LastName")]
-        [StringLength(maximumLength: 25, MinimumLength = 2, ErrorMessage = "Length must be between 2 to 25")]
+        [Display(Name = "Efternamn")]
+        [StringLength(maximumLength: 25, MinimumLength = 2, ErrorMessage = "Längden måste vara mellan 2 och 25")]
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "User name")]
-        [StringLength(maximumLength: 40, MinimumLength = 2, ErrorMessage = "Length must be between 2 to 40")]
+        [Display(Name = "Användarnamn")]
+        [StringLength(maximumLength: 40, MinimumLength = 2, ErrorMessage = "Längden måste vara mellan 2 och 40")]
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 40, MinimumLength = 2, ErrorMessage = "Length must be between 2 to 40")]
-        [Display(Name = "Address")]
+        [StringLength(maximumLength: 40, MinimumLength = 2, ErrorMessage = "Längden måste vara mellan 2 och 40")]
+        [Display(Name = "Adress")]
         public string Address { get; set; }
 
         [Required]
-        [Display(Name = "Postal Code")]
-        [StringLength(5, MinimumLength = 5, ErrorMessage = "Please enter postalcode")]
+        [Display(Name = "Postnummer")]
+        [StringLength(5, MinimumLength = 5, ErrorMessage = "Fyll i postnummer")]
         public string PostalCode { get; set; }
 
         [Required]
-        [Display(Name = "City")]
-        [StringLength(maximumLength: 40, MinimumLength = 2, ErrorMessage = "Length must be between 2 to 40")]
+        [Display(Name = "Stad")]
+        [StringLength(maximumLength: 40, MinimumLength = 2, ErrorMessage = "Längden måste vara mellan 2 och 40")]
         public string City { get; set; }
 
         [Required]
-        [Display(Name = "Personal IdNumber")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "Please enter personalnumber(id) yymmdd-nnnn")]
+        [Display(Name = "Personnummer")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "Fyll i personnummer yymmdd-nnnn")]
         public string PersonalIdNumber { get; set; }
     }
 }
