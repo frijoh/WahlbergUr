@@ -86,7 +86,7 @@ namespace WahlbergUr.Controllers
 
                     await signInManager.SignInAsync(user, isPersistent: false);
                     logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Customer");
                 }
                 AddErrors(result);
             }
@@ -121,7 +121,7 @@ namespace WahlbergUr.Controllers
                 {
                     logger.LogInformation("User logged in.");
                     
-                    var tmpuser = await userManager.FindByNameAsync(model.UserName/*Configuration.GetSection("AppSettings")["UserEmail"]*/);
+                    var tmpuser = await userManager.FindByNameAsync(model.UserName);
 
                     if (await userManager.IsInRoleAsync(tmpuser, "Admin"))
                     {

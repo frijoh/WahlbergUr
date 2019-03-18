@@ -20,7 +20,7 @@ namespace WahlbergUr.Models
         public string PersonalIdNumber { get; set; }
 
         [NotMapped]
-        public List<string> Roles { get; set; }
+        public IList<string> Roles { get; set; }
 
         [JsonProperty(PropertyName = "id")]
         public string DatabaseId { get; set; }

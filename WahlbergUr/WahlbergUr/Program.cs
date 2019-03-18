@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using WahlbergUr.Models;
 
@@ -16,16 +17,21 @@ namespace WahlbergUr
             var host = CreateWebHostBuilder(args).Build();
             //CreateWebHostBuilder(args).Build().Run();
 
-            using(var scope = host.Services.CreateScope())
+            var databaseConfiguration = new DatabaseConfiguration();
+            databaseConfiguration.Configure();
+            Thread.Sleep(5000);
+
+
+            using (var scope = host.Services.CreateScope())
             {
                 try
                 {
                     var services = scope.ServiceProvider;
                     var serviceProvider = services.GetRequiredService<IServiceProvider>();
                     var configuration = services.GetRequiredService<IConfiguration>();
-                    CreateRoles(serviceProvider,configuration).Wait();
+                    CreateRoles(serviceProvider, configuration).Wait();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     return;
                 }
@@ -41,7 +47,8 @@ namespace WahlbergUr
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<User>>();
-            string[] roleNames = { "Admin", "Member" };
+            //string[] roleNames = { "Admin", "Member" };
+            string[] roleNames = { "ADMIN", "MEMBER" };
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)

@@ -34,6 +34,8 @@ namespace WahlbergUr
             services.AddSingleton<IProductRepository, ProductRepository>();
             services.AddSingleton<IUserHandler, UserHandler>();
             services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IShopHandler, ShopHandler>();
+            services.AddSingleton<IShopRepository, ShopRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -45,14 +47,20 @@ namespace WahlbergUr
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole>()
-           .AddEntityFrameworkStores<ApplicationDbContext>()
-           .AddDefaultTokenProviders();
+            // services.AddIdentity<User, IdentityRole>()
+            //.AddEntityFrameworkStores<ApplicationDbContext>()
+            //.AddDefaultTokenProviders();
+
+            services.AddIdentity<User, IdentityRole>().AddDefaultTokenProviders();
+            services.AddSingleton<IRoleStore<IdentityRole>, IdentityRoleRepository>();
+            services.AddSingleton<IUserStore<User>, IdentityUserRepository>();
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Administrator", policy => policy.RequireRole("Admin"));
-                options.AddPolicy("Member", policy => policy.RequireRole("Member"));
+                //options.AddPolicy("Administrator", policy => policy.RequireRole("Admin"));
+                //options.AddPolicy("Member", policy => policy.RequireRole("Member"));
+                options.AddPolicy("Administrator", policy => policy.RequireRole("ADMIN"));
+                options.AddPolicy("Member", policy => policy.RequireRole("MEMBER"));
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -81,8 +89,8 @@ namespace WahlbergUr
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var databaseConfiguration = new DatabaseConfiguration();
-            databaseConfiguration.Configure();
+            //var databaseConfiguration = new DatabaseConfiguration();
+            //databaseConfiguration.Configure();
         }
     }
 }
