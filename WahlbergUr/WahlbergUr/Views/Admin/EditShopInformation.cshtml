@@ -11,12 +11,11 @@
     <title>Ändra butiksinformation</title>
 </head>
 <body>
-    <h1>@ViewData["Title"]</h1>
+    <h4>@ViewData["Title"]</h4>
     <div id="editShopInformation">
         @{
             var shopInformation = ViewData["Information"] as Shop;
         }
-
         <form method="post" asp-controller="Admin" asp-action="EditShopInformation">
             <div class="form-group">
                 <label asp-for="FromDay"></label>

@@ -1,17 +1,17 @@
 ﻿@model WahlbergUr.Models.Product
 
 @{
-    ViewData["Title"] = "Edit Product";
+    ViewData["Title"] = "Ändra en Produkt";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Edit Product</title>
+    <title>Ändra en Produkt</title>
 </head>
 <body>
-    <h1>@ViewData["Title"]</h1>
+    <h4>@ViewData["Title"]</h4>
     <div id="editProduct">
         @{
             var product = ViewData["Product"] as Product;
@@ -45,12 +45,12 @@
             </div>
             <div class="form-group">
                 <br />
-                <button type="submit" class="btn btn-default">Edit Product</button>
+                <button type="submit" class="btn btn-default">Ändra Produkt</button>
             </div>
         </form>
         <form method="post" asp-controller="Admin" asp-action="DeleteProduct" asp-route-id="@product.ProductId">
             <div class="form-group">
-                <button type="submit" class="btn btn-default">Delete Product</button>
+                <button type="submit" class="btn btn-default">Ta bort Produkt</button>
             </div>
         </form>
     </div>

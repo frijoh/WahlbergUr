@@ -5,13 +5,13 @@
 @using Microsoft.AspNetCore.Http.Authentication
 @inject SignInManager<User> SignInManager
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Logga in";
 }
 <div class="row">
     <div class="col-md-4">
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4>Logga in</h4>
+                <h4>@ViewData["Title"]</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">Log in</button>
+                    <button type="submit" class="btn btn-default">Logga in</button>
                 </div>
                 <div class="form-group">
                     <p>

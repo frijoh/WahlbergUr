@@ -1,18 +1,18 @@
 ﻿@model WahlbergUr.Models.Shop
 
 @{
-    ViewData["Title"] = "AddShopInformation";
+    ViewData["Title"] = "Lägga till butiksinformation";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AddShopInformation</title>
+    <title>Lägga till butiksinformation</title>
 </head>
 <body>
-    <div id="addShop">
-        <h4>Ändra butikens information</h4>
+    <div id="addShopInformation">
+        <h4>@ViewData["Title"]</h4>
         <form method="post" asp-controller="Admin" asp-action="AddShopInformation">
             <div class="form-group">
                 <label asp-for="FromDay"></label>
@@ -71,7 +71,7 @@
             </div>
             <div class="form-group">
                 <br />
-                <button type="submit" class="btn btn-default">Add Information</button>
+                <button type="submit" class="btn btn-default">Lägg till information</button>
             </div>
         </form>
     </div>

@@ -1,24 +1,56 @@
 ﻿@model IEnumerable<WahlbergUr.Models.EditUser>
 @{
-    ViewData["Title"] = "Visa kunder";
+    ViewData["Title"] = "Kunder i databasen";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Visa kunder</title>
+    <title>Kunder i databasen</title>
 </head>
 <body>
-    <h1>@ViewData["Title"]</h1>
-
-    <div id="mainDisplayContainer">
-        @foreach (var item in Model)
-        {
-        <h3> @Html.DisplayFor(modelItem => item.FirstName)</h3>
-        <h3>LastName: @Html.DisplayFor(modelItem => item.LastName)</h3>
-        <h3>Username: @Html.DisplayFor(modelItem => item.UserName)</h3>
-        }
-    </div>
+    <h4>@ViewData["Title"]</h4>
+    <table id="customertable">
+        <thead>
+            <tr>
+                <th>
+                    Förnamn
+                </th>
+                <th>
+                    Efternamn
+                </th>
+                <th>
+                   Användarnamn
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @*<a asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@item.UserName">Ta bort användare</a>*@
+                        @*<form method="post" asp-controller="Admin" asp-action="DeleteUser" asp-route-username="@item.UserName">
+                            <div class="form-group">*@
+                                <a asp-area="" asp-controller="Admin" asp-action="DeleteUser" asp-route-username="@item.UserName">Ta bort användare</a>
+                                @*<button type="submit" class="btn btn-default">Ta bort användare</button>*@
+                            @*</div>
+                        </form>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>
 </html>

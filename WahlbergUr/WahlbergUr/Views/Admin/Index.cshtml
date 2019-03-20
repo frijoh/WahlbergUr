@@ -1,27 +1,23 @@
 ﻿
 @{
-    ViewData["Title"] = "Admin";
+    ViewData["Title"] = "Administrativa gränssnittet";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Admin Page</title>
+    <title>Administrativa gränssnittet</title>
 </head>
 <body>
-    @*<div class="mainnav-container">
-            <div class="mainnav-left">*@
+    <h4>@ViewData["Title"]</h4>
     <ul>
-        <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddProduct">Lägg till Produkt</a></li>
+        <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddProduct">Lägga till Produkt</a></li>
         <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EditProducts">Ändra en Produkt</a></li>
-        <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddShopInformation">Lägg till Butiksinformation</a></li>
+        <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddShopInformation">Lägga till Butiksinformation</a></li>
         <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EditShopInformation">Ändra Butiksinformation</a></li>
         <li><a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListCustomers">Lista Kunder</a></li>
     </ul>
-    </ul>
-            @*</div>
-        </div>*@
 </body>
 </html>
 

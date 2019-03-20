@@ -175,5 +175,21 @@ namespace WahlbergUr.Controllers
             var result = await userHandler.GetUsers();
             return View(result);
         }
+
+        //[HttpPost]
+        public async Task<IActionResult> DeleteUser(string userName)
+        {
+            var user = await userHandler.GetUser(userName);
+            var deletedUser = await userHandler.DeleteUser(user);
+
+            if (deletedUser)
+            {
+                return RedirectToAction("ListCustomers", "Admin");
+            }
+            else
+            {
+                return View("NotFound");
+            }
+        }
     }
 }

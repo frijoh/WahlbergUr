@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<WahlbergUr.Models.Product>
 
 @{
-    ViewData["Title"] = "Edit Products";
+    ViewData["Title"] = "Ändra Produkter";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Edit Products</title>
+    <title>Ändra Produkter</title>
 </head>
 <body>
-    <h1>@ViewData["Title"]</h1>
-
+    <h4>@ViewData["Title"]</h4>
+    <p>Var god klicka på produkten du vill ändra</p>
     <div id="mainDisplayImageContainer">
         @foreach (var item in Model)
         {

@@ -15,6 +15,27 @@ namespace WahlbergUr.Business.Handlers
             this.userRepository = userRepository;
         }
 
+        public async Task<bool> DeleteUser(User user)
+        {
+            var deletedUser = await userRepository.DeleteUser(user);
+
+            if (deletedUser)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<User> GetUser(string UserName)
+        {
+            var user = new User() { UserName = UserName};
+            var foundUser = await userRepository.GetUser(user);
+            return foundUser;
+        }
+
         public async Task<List<EditUser>> GetUsers()
         {
             var editUsers = new List<EditUser>();

@@ -58,7 +58,7 @@ namespace WahlbergUr.Models
         [Display(Name = "Telefon")]
         public string PhoneNumber { get; set; }
 
-        
+        // TODO put text on home page in database and set up function for admin to change text
         public string CustomerInformation { get; set; }
 
         [Required]

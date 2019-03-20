@@ -27,38 +27,33 @@ namespace WahlbergUr.Business.Repositories
             });
         }
 
-        //public async Task<User> LogInUser(User logInUser)
-        //{
-        //    using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
-        //    {
-        //        var userCollection = client.CreateDocumentQuery<User>(UriFactory.CreateDocumentCollectionUri(DatabaseId, UserCollectionId));
-        //        //var loggedInUser = userCollection.AsEnumerable().FirstOrDefault((user) => user.UserName == logInUser.UserName 
-        //        //&& user.Password == logInUser.Password);
+        public async Task<bool> DeleteUser(User user)
+        {
+           
+            using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
+            {
+                if (user == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, IdentityUserCollection, user.DatabaseId));
+                    
+                    return true;
+                }
+            }
+        }
 
-        //        //return await Task.FromResult<User>(loggedInUser);
-        //        return null;
-        //    }
-        //}
-
-        //public async Task<bool> RegisterUser(User newUser)
-        //{
-        //    using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
-        //    {
-        //        // check if user exist in db
-        //        var userCollection = client.CreateDocumentQuery<User>(UriFactory.CreateDocumentCollectionUri(DatabaseId, UserCollectionId));
-        //        var userExist = userCollection.AsEnumerable().Any((user) => user.UserName == newUser.UserName);
-
-        //        if (!userExist)
-        //        {
-        //            // create user
-        //            var result = await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, UserCollectionId), newUser);
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
+        public Task<User> GetUser(User user)
+        {
+            using (var client = new DocumentClient(new Uri(EndPointURL), AuthorizationKey))
+            {
+                var userCollection = client.CreateDocumentQuery<User>(UriFactory.CreateDocumentCollectionUri(DatabaseId, IdentityUserCollection));
+                var foundUser = userCollection.AsEnumerable().FirstOrDefault((dBUser) => dBUser.UserName== user.UserName);
+                return Task.FromResult<User>(foundUser);
+            }
+        }
     }
     }
 
