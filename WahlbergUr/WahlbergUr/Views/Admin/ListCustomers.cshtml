@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<WahlbergUr.Models.EditUser>
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @{
     ViewData["Title"] = "Kunder i databasen";
 }
@@ -21,7 +23,7 @@
                     Efternamn
                 </th>
                 <th>
-                   Användarnamn
+                    Användarnamn
                 </th>
                 <th></th>
             </tr>
@@ -40,13 +42,10 @@
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
                     <td>
-                        @*<a asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@item.UserName">Ta bort användare</a>*@
-                        @*<form method="post" asp-controller="Admin" asp-action="DeleteUser" asp-route-username="@item.UserName">
-                            <div class="form-group">*@
-                                <a asp-area="" asp-controller="Admin" asp-action="DeleteUser" asp-route-username="@item.UserName">Ta bort användare</a>
-                                @*<button type="submit" class="btn btn-default">Ta bort användare</button>*@
-                            @*</div>
-                        </form>*@
+                        @if (item.IsMember)
+                        {
+                            <a asp-area="" asp-controller="Admin" asp-action="DeleteUser" asp-route-username="@item.UserName">Ta bort användare</a>
+                        }
                     </td>
                 </tr>
             }

@@ -74,7 +74,7 @@ body {
     margin-right: auto;
 }
 
-#content p, #content-side p, #footer-container p, table {
+#content p, #content-side p, #footer-container p{
     margin: 10px 0px 10px 0px;
 }
 
@@ -573,4 +573,46 @@ img.photosmall {
 /******************
 Css non template
 ******************/
+
+#customertable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+                         
+th {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.gridwrapper {
+    display: inline-block;
+    /*grid-template-columns: repeat(2, 100px);
+    grid-template-rows: repeat(2, 100px);*/
+    text-align: center;
+    height: 400px;
+    width: 200px;
+    grid-gap: 10px;
+    grid-template-areas: "a a " "a a " "b c";
+}
+
+.item1 {
+    grid-area: a;
+}
+
+.item2 {
+    grid-area: b;
+    
+}
+
+.item3 {
+    grid-area: c;
+}
 

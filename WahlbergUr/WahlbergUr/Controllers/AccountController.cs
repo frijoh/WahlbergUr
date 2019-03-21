@@ -78,7 +78,6 @@ namespace WahlbergUr.Controllers
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
 
-                //var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     logger.LogInformation("User created a new account with password.");
@@ -119,7 +118,7 @@ namespace WahlbergUr.Controllers
                 var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    logger.LogInformation("User logged in.");
+                    logger.LogInformation("User logged in!");
                     
                     var tmpuser = await userManager.FindByNameAsync(model.UserName);
 
@@ -134,16 +133,15 @@ namespace WahlbergUr.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    logger.LogWarning("User account locked out.");
+                    logger.LogWarning("User account locked out!");
                     return RedirectToAction(nameof(Lockout));
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt!");
                     return View(model);
                 }
             }
-            
             return View(model);
         }
 
@@ -159,7 +157,7 @@ namespace WahlbergUr.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            logger.LogInformation("User logged out.");
+            logger.LogInformation("User logged out!");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }

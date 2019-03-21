@@ -15,7 +15,6 @@ namespace WahlbergUr
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
-            //CreateWebHostBuilder(args).Build().Run();
 
             var databaseConfiguration = new DatabaseConfiguration();
             databaseConfiguration.Configure();
@@ -47,7 +46,6 @@ namespace WahlbergUr
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<User>>();
-            //string[] roleNames = { "Admin", "Member" };
             string[] roleNames = { "ADMIN", "MEMBER" };
             IdentityResult roleResult;
 
@@ -64,7 +62,10 @@ namespace WahlbergUr
             // creating a super user who could maintain the web app
             var admin = new User
             {
+                FirstName = Configuration.GetSection("AdminAccount")["FirstName"],
+                LastName = Configuration.GetSection("AdminAccount")["LastName"],
                 UserName = Configuration.GetSection("AdminAccount")["UserName"],
+                
             };
 
             string userPassword = Configuration.GetSection("AdminAccount")["UserPassword"];

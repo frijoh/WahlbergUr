@@ -1,28 +1,27 @@
 ﻿@model WahlbergUr.Models.Product
 
 @{
-    ViewData["Title"] = "Show Product";
+    ViewData["Title"] = "Vald Produkt";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Show Product</title>
+    <title>Vald Produkt</title>
 </head>
 <body>
-    <h1>@ViewData["Title"]</h1>
-
+    <h4>@ViewData["Title"]</h4>
     @{
         var product = ViewData["Product"] as Product;
     }
     <div id="displayProduct">
-        <h3>Id: @product.ProductId</h3>
+        @*<h3>Id: @product.ProductId</h3>*@
         <h3>Name: @product.ProductName</h3>
         <h3>Detail: @product.ProductInformation</h3>
-        <h3>Price: @product.ProductPrice</h3>
+        <h3>Price: @product.ProductPrice SEK</h3>
         <div id="imageContainer">
-            <img src="@Url.Content(product.ProductUrl) " width="150" height="100" alt="Image" />
+            <img src="@Url.Content(product.ProductUrlLarge)" width="250" height="400" alt="Image" />
         </div>
     </div>
     </body>

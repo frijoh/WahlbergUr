@@ -29,7 +29,11 @@ namespace WahlbergUr.Models
         public string ProductInformation { get; set; }
 
         [Required]
-        [Display(Name = "Produktens Url")]
-        public string ProductUrl { get; set; }
+        [Display(Name = "Produktens Url thumbprint bild")]
+        public string ProductUrlThumb { get; set; }
+
+        [Required]
+        [Display(Name = "Produktens Url stor bild")]
+        public string ProductUrlLarge { get; set; }
     }
 }

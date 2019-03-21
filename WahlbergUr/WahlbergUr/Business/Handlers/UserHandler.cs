@@ -47,6 +47,7 @@ namespace WahlbergUr.Business.Handlers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserName = user.UserName,
+                    IsMember = user.Roles.Contains("MEMBER"),
                 });
             }     
             return editUsers;
