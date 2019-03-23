@@ -13,19 +13,18 @@
 <body>
     <h4>@ViewData["Title"]</h4>
     <p>Var god klicka på produkten du vill ändra</p>
-    <div id="mainDisplayImageContainer">
-        @foreach (var item in Model)
-        {
-            <div id="imageContainer">
+    @foreach (var item in Model)
+    {
+        <div class="gridwrapper">
+            <div class="item1">
                 <a href="@Url.Action("EditProduct", "Admin", new { id = item.ProductId})">
-                    <img src="@Url.Content(item.ProductUrlThumb)" height="250" width="150" alt="Image" />
+                    <img src="@Url.Content(item.ProductUrlThumb)" @*height="250" width="150"*@ alt="Image" />
                 </a>
             </div>
-            <div id=" imageName">
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </div>
-        }
-    </div>
+            <div class="item2">@Html.DisplayFor(modelItem => item.ProductName)</div>
+            <div class="item3">@Html.DisplayFor(modelItem => item.ProductPrice)</div>
+        </div>
+    }
 </body>
 </html>
 

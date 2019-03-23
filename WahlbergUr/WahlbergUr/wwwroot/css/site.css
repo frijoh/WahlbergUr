@@ -616,3 +616,29 @@ td {
     grid-area: c;
 }
 
+.gridwrapperproduct {
+    display: inline-block;
+    /*grid-template-columns: repeat(2, 100px);
+    grid-template-rows: repeat(2, 100px);*/
+    text-align: center;
+    height: 400px;
+    width: 500px;
+    grid-gap: 10px;
+    grid-template-areas: "a a b b" "a a c c" "a a d d";
+}
+
+.product1 {
+    grid-area: a;
+}
+
+.product2 {
+    grid-area: b;
+}
+
+.product3 {
+    grid-area: c;
+}
+
+.product4 {
+    grid-area: d;
+}

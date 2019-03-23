@@ -15,16 +15,15 @@
     @{
         var product = ViewData["Product"] as Product;
     }
-    <div id="displayProduct">
-        @*<h3>Id: @product.ProductId</h3>*@
-        <h3>Name: @product.ProductName</h3>
-        <h3>Detail: @product.ProductInformation</h3>
-        <h3>Price: @product.ProductPrice SEK</h3>
-        <div id="imageContainer">
-            <img src="@Url.Content(product.ProductUrlLarge)" width="250" height="400" alt="Image" />
+    <div class="gridwrapperproduct">
+        <div class="product1">
+                <img src="@Url.Content(product.ProductUrlLarge)" @*height="250" width="150"*@  alt="Image" />
         </div>
+        <div class="product2">Namn: @product.ProductName</div>
+        <div class="product3">Beskrivning: @product.ProductInformation</div>
+        <div class="product4">Pris: @product.ProductPrice SEK</div>
     </div>
-    </body>
+</body>
 </html>
 
 

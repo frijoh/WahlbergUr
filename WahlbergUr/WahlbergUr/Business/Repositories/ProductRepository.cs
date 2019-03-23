@@ -49,7 +49,8 @@ namespace WahlbergUr.Business.Repositories
                 product.ProductName = updateProduct.ProductName;
                 product.ProductInformation = updateProduct.ProductInformation;
                 product.ProductPrice = updateProduct.ProductPrice;
-                product.ProductUrl = updateProduct.ProductUrl;
+                product.ProductUrlThumb = updateProduct.ProductUrlThumb;
+                product.ProductUrlLarge = updateProduct.ProductUrlLarge;
 
                 var result = await client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, ProductCollectionId), product);
                 return product;

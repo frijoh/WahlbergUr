@@ -46,7 +46,8 @@ namespace WahlbergUr.Migrations
                     Address = table.Column<string>(nullable: true),
                     PostalCode = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
-                    PersonalIdNumber = table.Column<string>(nullable: true)
+                    PersonalIdNumber = table.Column<string>(nullable: true),
+                    DatabaseId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

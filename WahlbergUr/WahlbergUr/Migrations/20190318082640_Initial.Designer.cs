@@ -10,7 +10,7 @@ using WahlbergUr.Data;
 namespace WahlbergUr.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190316140222_Initial")]
+    [Migration("20190318082640_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,6 +144,8 @@ namespace WahlbergUr.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("DatabaseId");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);

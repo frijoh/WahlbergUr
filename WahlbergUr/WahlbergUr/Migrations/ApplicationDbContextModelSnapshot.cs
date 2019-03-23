@@ -143,6 +143,8 @@ namespace WahlbergUr.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("DatabaseId");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
