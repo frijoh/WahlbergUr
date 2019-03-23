@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WahlbergUr.Business;
 using WahlbergUr.Business.Handlers;
 using WahlbergUr.Business.Repositories;
-using Microsoft.EntityFrameworkCore;
 using WahlbergUr.Data;
-using Microsoft.AspNetCore.Identity;
 using WahlbergUr.Models;
 
 namespace WahlbergUr
@@ -47,18 +43,12 @@ namespace WahlbergUr
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            // services.AddIdentity<User, IdentityRole>()
-            //.AddEntityFrameworkStores<ApplicationDbContext>()
-            //.AddDefaultTokenProviders();
-
             services.AddIdentity<User, IdentityRole>().AddDefaultTokenProviders();
             services.AddSingleton<IRoleStore<IdentityRole>, IdentityRoleRepository>();
             services.AddSingleton<IUserStore<User>, IdentityUserRepository>();
 
             services.AddAuthorization(options =>
             {
-                //options.AddPolicy("Administrator", policy => policy.RequireRole("Admin"));
-                //options.AddPolicy("Member", policy => policy.RequireRole("Member"));
                 options.AddPolicy("Administrator", policy => policy.RequireRole("ADMIN"));
                 options.AddPolicy("Member", policy => policy.RequireRole("MEMBER"));
             });
@@ -88,9 +78,6 @@ namespace WahlbergUr
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            //var databaseConfiguration = new DatabaseConfiguration();
-            //databaseConfiguration.Configure();
         }
     }
 }
